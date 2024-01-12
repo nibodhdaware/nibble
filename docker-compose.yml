@@ -1,0 +1,15 @@
+version: "3.4"
+
+services:
+    nibblebot:
+        image: nibblebot
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        environment:
+            NODE_ENV: production
+            DISCORD_TOKEN: ${DISCORD_TOKEN}
+            CLIENT_ID: ${CLIENT_ID}
+            GUILD_ID: ${GUILD_ID}
+        ports:
+            - 3000:3000
