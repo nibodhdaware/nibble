@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-app.get("/", (req, res) => {
+app.get("/", (req: express.Request, res: express.Response) => {
   res.send("Running!");
 });
 
