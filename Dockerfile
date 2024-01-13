@@ -1,10 +1,21 @@
 FROM node:lts
-ENV NODE_ENV=production
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+RUN corepack enable
+
 WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
+
+COPY package.json pnpm-lock.yaml ./
+
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+    pnpm install --prod --frozen-lockfile
+
 COPY . .
+
 EXPOSE 3000
-RUN chown -R node /usr/src/app
+
 USER node
-CMD ["npm", "start"]
+
+CMD ["pnpm", "start"]
