@@ -1,5 +1,11 @@
 import dotenv from "dotenv";
-import {Client, Collection, Events, GatewayIntentBits, Partials} from "discord.js";
+import {
+    Client,
+    Collection,
+    Events,
+    GatewayIntentBits,
+    Partials,
+} from "discord.js";
 import fs from "fs";
 import path from "path";
 
@@ -87,4 +93,4 @@ bot.once(Events.ClientReady, (readyClient) => {
     console.log(`Logged in as ${readyClient.user?.tag}`);
 });
 
-bot.login(process.env.DISCORD_TOKEN).then(r => console.log(`Logged in as ${bot.user?.tag}`));
+bot.login(process.env.DISCORD_TOKEN);
