@@ -3,7 +3,7 @@ import {
   RGBTuple,
   SlashCommandBuilder,
 } from "@discordjs/builders";
-import { CommandInteraction, NewsChannel, TextChannel } from "discord.js";
+import { CommandInteraction, NewsChannel } from "discord.js";
 
 module.exports = {
   data: new SlashCommandBuilder()
