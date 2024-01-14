@@ -1,6 +1,4 @@
 import {
-  EmbedBuilder,
-  RGBTuple,
   SlashCommandBuilder,
 } from "@discordjs/builders";
 import { CommandInteraction, NewsChannel } from "discord.js";
@@ -30,16 +28,16 @@ module.exports = {
     if (!(channel instanceof NewsChannel)) {
       throw new Error("The announcements channel is not a text channel.");
     }
-    const nibodhGrey: RGBTuple = [21, 21, 21];
-    const embed = new EmbedBuilder()
-      .setColor(nibodhGrey)
-      .setTitle("Announcement")
-      .setDescription(`@everyone\n${announcement?.value}` as string)
-      .setTimestamp();
-    await channel.send({ embeds: [embed] });
-    await interaction.reply({
-      content: "Announcement sent!",
-      ephemeral: true,
-    });
+
+    if (!interaction.member.roles.cache.has("1173226302644424755")) {
+      interaction.reply({ content: "You can't make an announcement", ephemeral: true });
+      return;
+    } else {
+      await channel.send({ content: `@everyone\n${announcement?.value}` });
+      await interaction.reply({
+        content: "Announcement sent!",
+        ephemeral: true,
+      });
+    }
   },
 };

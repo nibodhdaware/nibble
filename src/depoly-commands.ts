@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v9";
 import { commandFiles } from "./files";
@@ -13,7 +14,7 @@ for (const file of commandFiles) {
   commands.push(command.data.toJSON());
 }
 
-const rest = new REST({ version: "9" }).setToken(process.env.TOKEN as string);
+const rest = new REST({ version: "9" }).setToken(process.env.DISCORD_TOKEN as string);
 
 rest.put(
   Routes.applicationGuildCommands(
