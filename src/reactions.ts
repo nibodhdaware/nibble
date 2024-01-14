@@ -40,10 +40,15 @@ async function addReactionRole() {
     roles: ["1195914212866793552"],
     type: EType.NORMAL
   });
+  const java = reactionClient.createOption({
+    clickable_id: "1195999383263662150",
+    roles: ["1195971089067687986"],
+    type: EType.NORMAL
+  })
 
   await reactionClient.createMessage({
     channel_id: "1173233674171469824",
-    clickables: [typescript, javascript, python, rust, c, cpp, cs],
+    clickables: [typescript, javascript, python, rust, c, cpp, cs, java],
     message_id: "1173234394379591750"
   });
 
