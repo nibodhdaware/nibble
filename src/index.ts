@@ -47,5 +47,5 @@ for (const file of eventFiles) {
   bot.on(event.name, (...args) => event.execute(...args, bot));
 }
 
-bot.login(process.env.DISCORD_TOKEN);
+bot.login(process.env.DISCORD_TOKEN as string);
 keepAlive();
