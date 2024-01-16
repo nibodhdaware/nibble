@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_1 = require("discord.js");
 const config_1 = __importDefault(require("../config"));
 module.exports = {
-    name: "guildMemberAdd",
+    name: discord_js_1.Events.GuildMemberAdd,
     execute(member, client) {
         return __awaiter(this, void 0, void 0, function* () {
             const nibodhGrey = [21, 21, 21];

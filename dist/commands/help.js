@@ -24,14 +24,14 @@ module.exports = {
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             const commands = new Map();
-            const embed = new builders_1.EmbedBuilder(); // Create a single embed
-            const foldersPath = path_1.default.join(__dirname, "../../commands");
+            const embed = new builders_1.EmbedBuilder();
+            const foldersPath = path_1.default.join(__dirname, "../commands");
             const commandFolders = fs_1.default.readdirSync(foldersPath);
             for (const folder of commandFolders) {
                 const commandsPath = path_1.default.join(foldersPath, folder);
                 const commandFiles = fs_1.default
                     .readdirSync(commandsPath)
-                    .filter((file) => file.endsWith(".ts"));
+                    .filter((file) => file.endsWith(".js"));
                 for (const file of commandFiles) {
                     const filePath = path_1.default.join(commandsPath, file);
                     const command = require(filePath);
@@ -43,13 +43,11 @@ module.exports = {
                     }
                 }
             }
-            // Build the embed with all commands
             let commandDescriptions = "";
             for (const [commandName, commandDescription] of commands) {
                 commandDescriptions += `\`/${commandName}\`: ${commandDescription}\n`;
             }
             embed.setDescription(commandDescriptions);
-            // Send the single embed with all commands
             yield interaction.reply({ embeds: [embed] });
         });
     },

@@ -21,16 +21,18 @@ const bot = new discord_js_1.Client({
 bot.commands = new discord_js_1.Collection();
 (0, reactions_1.default)();
 for (const file of files_1.commandFiles) {
-    const command = require(`./commands/${file}`);
+    const command = require(`./src/commands/${file}`);
     bot.commands.set(command.data.name, command);
 }
 for (const file of files_1.eventFiles) {
-    const event = require(`./events/${file.substring(0, file.length - 3)}`);
+    const event = require(`./src/events/${file.substring(0, file.length - 3)}`);
     if (event.once) {
         bot.once(event.name, (...args) => event.execute(...args, bot));
         continue;
     }
     bot.on(event.name, (...args) => event.execute(...args, bot));
 }
-bot.login(process.env.DISCORD_TOKEN);
+bot.login(process.env.DISCORD_TOKEN).then(() => {
+    console.log("Logged in!");
+});
 (0, server_1.default)();

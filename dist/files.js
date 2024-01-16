@@ -6,10 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.eventFiles = exports.commandFiles = void 0;
 const fs_1 = __importDefault(require("fs"));
 const commandFiles = fs_1.default
-    .readdirSync("./dist/commands")
+    .readdirSync("./src/commands")
     .filter((file) => file.endsWith(".js"));
 exports.commandFiles = commandFiles;
 const eventFiles = fs_1.default
-    .readdirSync("./dist/events")
+    .readdirSync("./src/events")
     .filter((file) => file.endsWith(".js"));
 exports.eventFiles = eventFiles;
