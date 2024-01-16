@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: 'nibble-bot'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A77A1A6CA90D46DDA7664A8BFF762E02 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3C489CDECC734DD4AF42828479F09C44 }}
           package: .
