@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.get("/", (req: express.Request, res: express.Response) => {
-    res.send("Running!");
+    res.status(200).send("Running!");
 });
 
 function keepAlive() {
