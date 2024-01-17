@@ -1,9 +1,10 @@
-import "dotenv/config";
 import { Client, Collection, GatewayIntentBits, Partials } from "discord.js";
 import { BotCommand, BotClient } from "./types";
 import { commandFiles, eventFiles } from "./files";
 import keepAlive from "./server";
 import addReactionRole from "./reactions";
+import dotenv from "dotenv";
+dotenv.config();
 
 declare module "discord.js" {
     export interface Client {
