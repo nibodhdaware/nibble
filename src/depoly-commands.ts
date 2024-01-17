@@ -3,6 +3,7 @@ import { Routes } from "discord-api-types/v9";
 import { commandFiles } from "./files";
 import { BotCommand } from "./types";
 import dotenv from "dotenv";
+import path from "path";
 dotenv.config();
 
 const commands: object[] = [];
@@ -12,7 +13,13 @@ for (const file of commandFiles) {
         0,
         file.length - 3,
     )}`) as BotCommand;
-    commands.push(command.data.toJSON());
+    if ("data" in command && "execute" in command) {
+        commands.push(command.data.toJSON());
+    } else {
+        console.log(
+            `[WARNING] The command is missing a required "data" or "execute" property.`,
+        );
+    }
 }
 
 const rest = new REST().setToken(process.env.DISCORD_TOKEN as string);

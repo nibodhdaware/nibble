@@ -3,11 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("dotenv/config");
 const discord_js_1 = require("discord.js");
 const files_1 = require("./files");
 const server_1 = __importDefault(require("./server"));
 const reactions_1 = __importDefault(require("./reactions"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const bot = new discord_js_1.Client({
     intents: [
         discord_js_1.GatewayIntentBits.Guilds,

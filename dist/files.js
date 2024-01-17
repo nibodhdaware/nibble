@@ -7,9 +7,9 @@ exports.eventFiles = exports.commandFiles = void 0;
 const fs_1 = __importDefault(require("fs"));
 const commandFiles = fs_1.default
     .readdirSync("./src/commands")
-    .filter((file) => file.endsWith(".js"));
+    .filter((file) => file.endsWith(".ts"));
 exports.commandFiles = commandFiles;
 const eventFiles = fs_1.default
     .readdirSync("./src/events")
-    .filter((file) => file.endsWith(".js"));
+    .filter((file) => file.endsWith(".ts"));
 exports.eventFiles = eventFiles;
