@@ -15,14 +15,22 @@ for (const file of commandFiles) {
     commands.push(command.data.toJSON());
 }
 
-const rest = new REST({ version: "9" }).setToken(
-    process.env.DISCORD_TOKEN as string,
-);
+const rest = new REST().setToken(process.env.DISCORD_TOKEN as string);
 
-rest.put(
-    Routes.applicationGuildCommands(
-        process.env.CLIENT_ID as string,
-        process.env.GUILD_ID as string,
-    ),
-    { body: commands },
-);
+(async () => {
+    try {
+        console.log(
+            `Started refreshing ${commands.length} application (/) commands.`,
+        );
+
+        await rest.put(
+            Routes.applicationGuildCommands(
+                process.env.CLIENT_ID as string,
+                process.env.GUILD_ID as string,
+            ),
+            { body: commands },
+        );
+    } catch (error) {
+        console.error(error);
+    }
+})();

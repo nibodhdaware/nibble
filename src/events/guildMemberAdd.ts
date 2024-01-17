@@ -16,7 +16,7 @@ module.exports = {
             .setColor(nibodhGrey)
             .setTitle("New Member")
             .setDescription(
-                `Welcome <!@${member.id}> to the conaticus server, enjoy your stay!`,
+                `Welcome <!@${member.id}> to the N Dev server, enjoy your stay!`,
             );
 
         const welcomeChannel = client.channels.cache.get(
