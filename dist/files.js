@@ -5,14 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.eventFiles = exports.commandFiles = void 0;
 const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("path"));
-const commandsFolder = path_1.default.join(__dirname, "./commands");
 const commandFiles = fs_1.default
-    .readdirSync(commandsFolder)
-    .filter((file) => file.endsWith(".ts"));
+    .readdirSync("./dist/commands")
+    .filter((file) => file.endsWith(".js"));
 exports.commandFiles = commandFiles;
-const eventsFolder = path_1.default.join(__dirname, "./events");
 const eventFiles = fs_1.default
-    .readdirSync(eventsFolder)
-    .filter((file) => file.endsWith(".ts"));
+    .readdirSync("./dist/events")
+    .filter((file) => file.endsWith(".js"));
 exports.eventFiles = eventFiles;

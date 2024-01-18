@@ -3,7 +3,6 @@ import { BotClient } from "../types";
 
 module.exports = {
     name: Events.InteractionCreate,
-    once: true,
     async execute(interaction: any, client: BotClient) {
         if (!interaction.isChatInputCommand()) return;
 

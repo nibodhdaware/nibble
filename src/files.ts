@@ -1,14 +1,11 @@
 import fs from "fs";
-import path from "path";
 
-const commandsFolder = path.join(__dirname, "./commands");
 const commandFiles = fs
-    .readdirSync(commandsFolder)
-    .filter((file) => file.endsWith(".ts"));
+    .readdirSync("./dist/commands")
+    .filter((file) => file.endsWith(".js"));
 
-const eventsFolder = path.join(__dirname, "./events");
 const eventFiles = fs
-    .readdirSync(eventsFolder)
-    .filter((file) => file.endsWith(".ts"));
+    .readdirSync("./dist/events")
+    .filter((file) => file.endsWith(".js"));
 
 export { commandFiles, eventFiles };

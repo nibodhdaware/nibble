@@ -11,21 +11,20 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const bot = new discord_js_1.Client({
     intents: [
-        discord_js_1.IntentsBitField.Flags.Guilds,
-        discord_js_1.IntentsBitField.Flags.GuildMembers,
-        discord_js_1.IntentsBitField.Flags.GuildMessages,
-        discord_js_1.IntentsBitField.Flags.GuildMessageReactions,
-        discord_js_1.IntentsBitField.Flags.GuildMessageTyping,
+        discord_js_1.GatewayIntentBits.Guilds,
+        discord_js_1.GatewayIntentBits.GuildMembers,
+        discord_js_1.GatewayIntentBits.GuildMessages,
+        discord_js_1.GatewayIntentBits.MessageContent,
     ],
     partials: [discord_js_1.Partials.Message, discord_js_1.Partials.Channel, discord_js_1.Partials.Reaction],
 });
 bot.commands = new discord_js_1.Collection();
 for (const file of files_1.commandFiles) {
-    const command = require(`./src/commands/${file}`);
+    const command = require(`./commands/${file}`);
     bot.commands.set(command.data.name, command);
 }
 for (const file of files_1.eventFiles) {
-    const event = require(`./src/events/${file.substring(0, file.length - 3)}`);
+    const event = require(`./events/${file.substring(0, file.length - 3)}`);
     if (event.once) {
         bot.once(event.name, (...args) => event.execute(...args, bot));
     }

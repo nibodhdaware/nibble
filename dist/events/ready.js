@@ -5,6 +5,6 @@ module.exports = {
     name: discord_js_1.Events.ClientReady,
     once: true,
     execute(client) {
-        console.log(`Logged in as ${client.user.tag}.`);
+        console.log(`Logged in as ${client.user?.tag}.`);
     },
 };

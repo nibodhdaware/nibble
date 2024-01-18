@@ -10,6 +10,7 @@ import { BotClient } from "../types";
 
 module.exports = {
     name: Events.GuildMemberAdd,
+    once: true,
     async execute(member: GuildMember, client: BotClient) {
         const nibodhGrey: RGBTuple = [21, 21, 21];
         const welcomeMessageEmbed = new EmbedBuilder()

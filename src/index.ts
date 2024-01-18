@@ -1,4 +1,10 @@
-import { Client, Collection, IntentsBitField, Partials } from "discord.js";
+import {
+    Client,
+    Collection,
+    GatewayIntentBits,
+    IntentsBitField,
+    Partials,
+} from "discord.js";
 import { BotCommand, BotClient } from "./types";
 import { commandFiles, eventFiles } from "./files";
 import keepAlive from "./server";
@@ -14,11 +20,10 @@ declare module "discord.js" {
 
 const bot = new Client<true>({
     intents: [
-        IntentsBitField.Flags.Guilds,
-        IntentsBitField.Flags.GuildMembers,
-        IntentsBitField.Flags.GuildMessages,
-        IntentsBitField.Flags.GuildMessageReactions,
-        IntentsBitField.Flags.GuildMessageTyping,
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
     ],
     partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 }) as BotClient;
@@ -26,12 +31,12 @@ const bot = new Client<true>({
 bot.commands = new Collection<string, any>();
 
 for (const file of commandFiles) {
-    const command = require(`./src/commands/${file}`) as BotCommand;
+    const command = require(`./commands/${file}`) as BotCommand;
     bot.commands.set(command.data.name, command);
 }
 
 for (const file of eventFiles) {
-    const event = require(`./src/events/${file.substring(0, file.length - 3)}`);
+    const event = require(`./events/${file.substring(0, file.length - 3)}`);
 
     if (event.once) {
         bot.once(event.name, (...args) => event.execute(...args, bot));
