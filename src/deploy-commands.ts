@@ -3,7 +3,6 @@ import { Routes } from "discord-api-types/v9";
 import { commandFiles } from "./files";
 import { BotCommand } from "./types";
 import dotenv from "dotenv";
-import path from "path";
 dotenv.config();
 
 const commands: object[] = [];

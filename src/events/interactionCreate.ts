@@ -5,7 +5,7 @@ module.exports = {
     name: Events.InteractionCreate,
     once: true,
     async execute(interaction: any, client: BotClient) {
-        if (!interaction.isCommand()) return;
+        if (!interaction.isChatInputCommand()) return;
 
         const command = client.commands.get(interaction.commandName);
         if (!command) return;

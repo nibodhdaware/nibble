@@ -37,13 +37,10 @@ for (const file of eventFiles) {
 
     if (event.once) {
         bot.once(event.name, (...args) => event.execute(...args, bot));
-        continue;
+    } else {
+        bot.on(event.name, (...args) => event.execute(...args, bot));
     }
-
-    bot.on(event.name, (...args) => event.execute(...args, bot));
 }
 
-bot.login(process.env.DISCORD_TOKEN as string).then(() => {
-    console.log("Logged in!");
-});
+bot.login(process.env.DISCORD_TOKEN as string);
 keepAlive();
