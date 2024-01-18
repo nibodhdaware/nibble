@@ -1,4 +1,4 @@
-import { Client, Collection, GatewayIntentBits, Partials } from "discord.js";
+import { Client, Collection, IntentsBitField, Partials } from "discord.js";
 import { BotCommand, BotClient } from "./types";
 import { commandFiles, eventFiles } from "./files";
 import keepAlive from "./server";
@@ -14,18 +14,16 @@ declare module "discord.js" {
 
 const bot = new Client<true>({
     intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.GuildMessageReactions,
-        GatewayIntentBits.GuildMessageTyping,
+        IntentsBitField.Flags.Guilds,
+        IntentsBitField.Flags.GuildMembers,
+        IntentsBitField.Flags.GuildMessages,
+        IntentsBitField.Flags.GuildMessageReactions,
+        IntentsBitField.Flags.GuildMessageTyping,
     ],
     partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 }) as BotClient;
 
 bot.commands = new Collection<string, any>();
-
-addReactionRole();
 
 for (const file of commandFiles) {
     const command = require(`./src/commands/${file}`) as BotCommand;
@@ -37,10 +35,12 @@ for (const file of eventFiles) {
 
     if (event.once) {
         bot.once(event.name, (...args) => event.execute(...args, bot));
-    } else {
-        bot.on(event.name, (...args) => event.execute(...args, bot));
     }
+
+    bot.on(event.name, (...args) => event.execute(...args, bot));
 }
+
+addReactionRole();
 
 bot.login(process.env.DISCORD_TOKEN as string);
 keepAlive();

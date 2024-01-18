@@ -22,7 +22,7 @@ module.exports = {
             const welcomeMessageEmbed = new discord_js_1.EmbedBuilder()
                 .setColor(nibodhGrey)
                 .setTitle("New Member")
-                .setDescription(`Welcome <!@${member.id}> to the N Dev server, enjoy your stay!`);
+                .setDescription(`Welcome <!@${member.id}> to the N Den server, enjoy your stay!`);
             const welcomeChannel = client.channels.cache.get(config_1.default.welcomeChannelId);
             welcomeChannel.send({ embeds: [welcomeMessageEmbed] });
         });

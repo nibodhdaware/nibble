@@ -15,7 +15,7 @@ module.exports = {
     once: true,
     execute(interaction, client) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!interaction.isCommand())
+            if (!interaction.isChatInputCommand())
                 return;
             const command = client.commands.get(interaction.commandName);
             if (!command)
