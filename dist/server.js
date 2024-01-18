@@ -9,7 +9,7 @@ dotenv_1.default.config();
 const port = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 app.get("/", (req, res) => {
-    res.send("Running!");
+    res.status(200).send("Running!");
 });
 function keepAlive() {
     app.listen(port, () => {
