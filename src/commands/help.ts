@@ -4,8 +4,6 @@ import {
     SlashCommandBuilder,
 } from "discord.js";
 import { EmbedBuilder } from "@discordjs/builders";
-import path from "path";
-import fs from "fs";
 import { BotCommand } from "../types";
 import { commandFiles } from "../files";
 
