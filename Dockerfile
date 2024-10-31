@@ -34,4 +34,5 @@ COPY . .
 EXPOSE 3000
 
 # Run the application.
+RUN pnpm run build
 CMD pnpm start
